@@ -1,0 +1,17 @@
+[package]
+name = "csearch"
+version = "1.0.0"
+edition = "2021"
+authors = ["Daniil Nebytov <daniil2002.11@mail.ru>"]
+description = "Enter your query and it will be opened in browser"
+
+[profile.release]
+panic = "abort"
+
+[dependencies]
+anyhow = "1.0.70"
+clap = { version = "4.1.13", features = ["cargo"] }
+nameof = "1.2.2"
+url = "2.3.1"
+urlencoding = "2.1.2"
+webbrowser = "0.8.8"
