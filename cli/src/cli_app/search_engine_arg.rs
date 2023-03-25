@@ -1,37 +1,48 @@
-use crate::models::{
-    SearchEngine, SearchEngine::Bing, SearchEngine::DuckDuckGo, SearchEngine::Google,
-    SearchEngine::Yandex,
-};
+use self::SearchEngineArg::{Bing, DuckDuckGo, Google, Yandex};
+use app::models::SearchEngine;
 use clap::{builder::PossibleValue, value_parser, Arg, ValueEnum};
 use nameof::name_of;
 
-pub struct SearchEngineArg;
+#[derive(Clone)]
+pub enum SearchEngineArg {
+    Yandex,
+    Google,
+    Bing,
+    DuckDuckGo,
+}
 
 impl SearchEngineArg {
     pub const ID: &str = "Search Engine";
     pub const HELP: &str = "Select search engine";
     pub const LONG: &str = "search";
     pub const SHORT: char = 's';
-}
 
-impl Into<Arg> for SearchEngineArg {
-    fn into(self) -> Arg {
+    pub fn describe_argument() -> Arg {
         Arg::new(Self::ID)
             .help(Self::HELP)
             .long(Self::LONG)
             .short(Self::SHORT)
             .required(false)
-            .value_parser(value_parser!(SearchEngine))
+            .value_parser(value_parser!(SearchEngineArg))
             .default_value(name_of!(Yandex))
+    }
+
+    pub fn to_model(&self) -> SearchEngine {
+        match self {
+            Yandex => SearchEngine::Yandex,
+            Google => SearchEngine::Google,
+            Bing => SearchEngine::Bing,
+            DuckDuckGo => SearchEngine::DuckDuckGo,
+        }
     }
 }
 
-impl ValueEnum for SearchEngine {
+impl ValueEnum for SearchEngineArg {
     fn value_variants<'a>() -> &'a [Self] {
         &[Yandex, Google, Bing, DuckDuckGo]
     }
 
-    fn to_possible_value(&self) -> Option<clap::builder::PossibleValue> {
+    fn to_possible_value(&self) -> Option<PossibleValue> {
         Some(match self {
             Yandex => PossibleValue::new(name_of!(Yandex)),
             Google => PossibleValue::new(name_of!(Google)),
