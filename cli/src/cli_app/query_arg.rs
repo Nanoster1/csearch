@@ -8,11 +8,12 @@ pub struct QueryArg(String);
 impl QueryArg {
     pub const ID: &str = "Query";
     pub const HELP: &str = "Query for search in browser";
+    pub const IS_REQUIRED: bool = false;
 
     pub fn describe_argument() -> Arg {
         Arg::new(Self::ID)
             .help(Self::HELP)
-            .required(true)
+            .required(Self::IS_REQUIRED)
             .value_parser(value_parser!(QueryArg))
     }
 

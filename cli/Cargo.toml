@@ -13,4 +13,5 @@ panic = "abort"
 anyhow = "1.0.70"
 app = { version = "1.0.0", path = "../app" }
 clap = { version = "4.1.13", features = ["cargo"] }
+clap_complete = "4.1.5"
 nameof = "1.2.2"
