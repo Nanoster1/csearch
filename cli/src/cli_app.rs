@@ -1,16 +1,23 @@
+mod actions;
 mod browser_arg;
+mod completions_arg;
 mod query_arg;
 mod search_engine_arg;
 
-use self::{browser_arg::BrowserArg, query_arg::QueryArg, search_engine_arg::SearchEngineArg};
-use anyhow::Result;
+use self::{
+    actions::generate_completions, browser_arg::BrowserArg, completions_arg::CompletionsArg,
+    query_arg::QueryArg, search_engine_arg::SearchEngineArg,
+};
+use anyhow::{Ok, Result};
 use app::{
     actions::{open_browser, OpenBrowserOptions},
     models::{Browser, Query, SearchEngine},
 };
 use clap::{command, crate_authors, crate_description, crate_version, Command};
 
-pub struct CliApp(Command);
+pub struct CliApp {
+    pub command: Command,
+}
 
 impl CliApp {
     const NAME: &str = "csearch";
@@ -25,34 +32,53 @@ impl CliApp {
             .version(Self::VERSION)
             .arg(QueryArg::describe_argument())
             .arg(BrowserArg::describe_argument())
-            .arg(SearchEngineArg::describe_argument());
+            .arg(SearchEngineArg::describe_argument())
+            .arg(CompletionsArg::describe_argument());
 
-        Ok(Self(command))
+        Ok(Self { command })
     }
 
     pub fn execute(self) -> Result<()> {
-        let matches = self.0.get_matches();
+        let matches = self.command.get_matches();
 
-        let query: Query = matches
-            .get_one::<QueryArg>(QueryArg::ID)
-            .unwrap()
-            .to_model();
-        let browser: Browser = matches
-            .get_one::<BrowserArg>(BrowserArg::ID)
-            .unwrap()
-            .to_model();
-        let search_engine: SearchEngine = matches
-            .get_one::<SearchEngineArg>(SearchEngineArg::ID)
-            .unwrap()
-            .to_model();
+        if matches.contains_id(CompletionsArg::ID) {
+            let completions_arg = matches
+                .get_one::<CompletionsArg>(CompletionsArg::ID)
+                .unwrap();
 
-        let options = OpenBrowserOptions {
-            browser: &browser,
-            query: &query,
-            search_engine: &search_engine,
-        };
+            generate_completions(completions_arg, &mut std::io::stdout())?;
 
-        open_browser(options)?;
+            return Ok(());
+        }
+
+        if matches.contains_id(QueryArg::ID) {
+            let query: Query = matches
+                .get_one::<QueryArg>(QueryArg::ID)
+                .unwrap()
+                .to_model();
+
+            let browser: Browser = matches
+                .get_one::<BrowserArg>(BrowserArg::ID)
+                .unwrap()
+                .to_model();
+
+            let search_engine: SearchEngine = matches
+                .get_one::<SearchEngineArg>(SearchEngineArg::ID)
+                .unwrap()
+                .to_model();
+
+            let options = OpenBrowserOptions {
+                browser: &browser,
+                query: &query,
+                search_engine: &search_engine,
+            };
+
+            open_browser(options)?;
+
+            return Ok(());
+        }
+
+        CliApp::build_cli()?.command.print_help()?;
 
         Ok(())
     }

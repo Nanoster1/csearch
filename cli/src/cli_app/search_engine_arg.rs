@@ -1,4 +1,4 @@
-use self::SearchEngineArg::{Bing, DuckDuckGo, Google, Yandex};
+use self::SearchEngineArg::*;
 use app::models::SearchEngine;
 use clap::{builder::PossibleValue, value_parser, Arg, ValueEnum};
 use nameof::name_of;
@@ -16,15 +16,17 @@ impl SearchEngineArg {
     pub const HELP: &str = "Select search engine";
     pub const LONG: &str = "search";
     pub const SHORT: char = 's';
+    pub const IS_REQUIRED: bool = false;
+    pub const DEFAULT_VALUE: &str = name_of!(Yandex);
 
     pub fn describe_argument() -> Arg {
         Arg::new(Self::ID)
             .help(Self::HELP)
             .long(Self::LONG)
             .short(Self::SHORT)
-            .required(false)
+            .required(Self::IS_REQUIRED)
             .value_parser(value_parser!(SearchEngineArg))
-            .default_value(name_of!(Yandex))
+            .default_value(Self::DEFAULT_VALUE)
     }
 
     pub fn to_model(&self) -> SearchEngine {
