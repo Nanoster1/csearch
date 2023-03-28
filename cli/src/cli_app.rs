@@ -13,14 +13,14 @@ use app::{
     actions::{open_browser, OpenBrowserOptions},
     models::{Browser, Query, SearchEngine},
 };
-use clap::{command, crate_authors, crate_description, crate_version, Command};
+use clap::{command, crate_authors, crate_description, crate_name, crate_version, Command};
 
 pub struct CliApp {
     pub command: Command,
 }
 
 impl CliApp {
-    const NAME: &str = "csearch";
+    const NAME: &str = crate_name!();
     const AUTHOR: &str = crate_authors!();
     const ABOUT: &str = crate_description!();
     const VERSION: &str = crate_version!();
