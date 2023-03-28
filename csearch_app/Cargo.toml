@@ -1,7 +1,10 @@
 [package]
 name = "csearch_app"
-version = "1.1.0"
+version = "1.0.0"
 edition = "2021"
+description = "library with core logic for csearch"
+authors = ["Daniil Nebytov <daniil2002.11@mail.ru>"]
+repository = "https://github.com/Nanoster1/csearch"
 
 [dependencies]
 anyhow = "1.0.70"

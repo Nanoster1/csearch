@@ -1,2 +1,3 @@
 [workspace]
 members = ["csearch_cli", "csearch_app"]
+license = "MIT"
