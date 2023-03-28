@@ -5,6 +5,7 @@ edition = "2021"
 description = "Enter your query and it will be opened in browser"
 authors = ["Daniil Nebytov <daniil2002.11@mail.ru>"]
 repository = "https://github.com/Nanoster1/csearch"
+license = "MIT"
 
 [profile.release]
 panic = "abort"
