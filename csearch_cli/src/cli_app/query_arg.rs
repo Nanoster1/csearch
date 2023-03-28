@@ -1,5 +1,5 @@
-use app::models::Query;
 use clap::{value_parser, Arg};
+use csearch_app::models::Query;
 use std::str::FromStr;
 
 #[derive(Clone)]

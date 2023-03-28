@@ -11,7 +11,7 @@ panic = "abort"
 
 [dependencies]
 anyhow = "1.0.70"
-app = { version = "1.0.0", path = "../app" }
+csearch_app = { version = "1.0.0", path = "../csearch_app" }
 clap = { version = "4.1.13", features = ["cargo"] }
 clap_complete = "4.1.5"
 nameof = "1.2.2"

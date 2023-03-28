@@ -1,6 +1,6 @@
 use self::SearchEngineArg::*;
-use app::models::SearchEngine;
 use clap::{builder::PossibleValue, value_parser, Arg, ValueEnum};
+use csearch_app::models::SearchEngine;
 use nameof::name_of;
 
 #[derive(Clone)]

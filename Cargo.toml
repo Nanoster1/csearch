@@ -1,2 +1,2 @@
 [workspace]
-members = ["cli", "app"]
+members = ["csearch_cli", "csearch_app"]

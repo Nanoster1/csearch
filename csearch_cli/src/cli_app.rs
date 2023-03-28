@@ -9,11 +9,11 @@ use self::{
     query_arg::QueryArg, search_engine_arg::SearchEngineArg,
 };
 use anyhow::{Ok, Result};
-use app::{
+use clap::{command, crate_authors, crate_description, crate_name, crate_version, Command};
+use csearch_app::{
     actions::{open_browser, OpenBrowserOptions},
     models::{Browser, Query, SearchEngine},
 };
-use clap::{command, crate_authors, crate_description, crate_name, crate_version, Command};
 
 pub struct CliApp {
     pub command: Command,

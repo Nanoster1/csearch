@@ -1,6 +1,6 @@
 use self::BrowserArg::*;
-use app::models::Browser;
 use clap::{builder::PossibleValue, value_parser, Arg, ValueEnum};
+use csearch_app::models::Browser;
 use nameof::name_of;
 
 #[derive(Clone)]
