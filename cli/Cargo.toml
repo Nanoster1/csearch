@@ -1,6 +1,6 @@
 [package]
 name = "cli"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2021"
 authors = ["Daniil Nebytov <daniil2002.11@mail.ru>"]
 description = "Enter your query and it will be opened in browser"
