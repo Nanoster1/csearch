@@ -5,7 +5,7 @@ use clap_complete::{generate, Shell};
 
 use super::{completions_arg::CompletionsArg, CliApp};
 
-pub fn generate_completions(completions_arg: &CompletionsArg, buf: &mut dyn Write) -> Result<()> {
+pub fn generate_completions<W: Write>(completions_arg: &CompletionsArg, buf: &mut W) -> Result<()> {
     let shell = choose_shell(&completions_arg);
     generate(shell, &mut CliApp::build_cli()?.command, CliApp::NAME, buf);
     Ok(())
