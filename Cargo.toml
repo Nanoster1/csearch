@@ -3,7 +3,7 @@ members = ["csearch_cli", "csearch_app"]
 
 [workspace.package]
 edition = "2021"
-version = "1.1.1"
+version = "1.1.2"
 description = "Enter your query and it will be opened in browser"
 authors = ["Daniil Nebytov <daniil2002.11@mail.ru>"]
 repository = "https://github.com/Nanoster1/csearch"

@@ -104,7 +104,7 @@ checksum = "5827cebf4670468b8772dd191856768aedcb1b0278a04f989f7766351917b9dc"
 
 [[package]]
 name = "csearch"
-version = "1.1.1"
+version = "1.1.2"
 dependencies = [
  "anyhow",
  "clap",
@@ -115,7 +115,7 @@ dependencies = [
 
 [[package]]
 name = "csearch_app"
-version = "1.1.1"
+version = "1.1.2"
 dependencies = [
  "anyhow",
  "url",
