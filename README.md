@@ -24,7 +24,7 @@ You can generate common completions for your shell\
 \
 For example in *PowerShell*
 ```powershell
-mkdir ~/.cargo/scripts
+New-Item -Path ~/.cargo/scripts/ -Type Directory
 csearch --completions Bash >> ~/.cargo/scripts/csearch.ps1
 Add-Content -Path $PROFILE -Value "Invoke-Expression -Command ~/.cargo/scripts/*.ps1"
 ```
