@@ -1,5 +1,7 @@
 # csearch
-CLI Utility for the opening your browser from the terminal
+> **CLI Utility for the opening your browser from the terminal**
+
+[![Crates.io](https://img.shields.io/crates/v/csearch?style=flat-square)](https://crates.io/crates/csearch)
 
 ## Examples
 ```bash
